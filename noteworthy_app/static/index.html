@@ -4,29 +4,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>NoteWorthy · PDF study companion</title>
 <style>
-  :root { color-scheme: light; font: 16px/1.5 system-ui, sans-serif; background: #f5f4f0; color: #16211d; }
-  body { max-width: 900px; margin: 0 auto; padding: 32px 18px 70px; }
-  header { border-bottom: 1px solid #cad4ca; margin-bottom: 32px; }
-  h1 { font-size: clamp(2rem, 5vw, 3.5rem); margin: 0 0 8px; letter-spacing: -.04em; }
-  h2 { font-size: 1.3rem; margin-top: 0; }
-  .eyebrow { color: #28725b; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; font-size: .75rem; }
-  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
-  section { background: white; border: 1px solid #d9dfd8; border-radius: 16px; padding: 22px; box-shadow: 0 5px 20px #1a33210a; }
-  label { display: block; font-weight: 650; margin-bottom: 8px; }
+  :root { color-scheme: light; font: 16px/1.5 system-ui, sans-serif; background: #fff; color: #000; }
+  body { max-width: 860px; margin: 0 auto; padding: 32px 18px 70px; }
+  header { border-bottom: 1px solid #000; margin-bottom: 28px; }
+  h1 { font-size: 2rem; margin: 0 0 8px; }
+  h2 { font-size: 1.15rem; margin-top: 0; }
+  .eyebrow { color: #555; font-size: .8rem; text-transform: uppercase; letter-spacing: .1em; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+  section { border: 1px solid #000; padding: 18px; }
+  label { display: block; font-weight: 600; margin-bottom: 8px; }
   input, button { font: inherit; }
-  input[type=text] { box-sizing: border-box; width: 100%; padding: 12px; border: 1px solid #aebdb1; border-radius: 8px; }
+  input[type=text] { box-sizing: border-box; width: 100%; padding: 8px; border: 1px solid #000; }
   input[type=file] { max-width: 100%; }
-  button { border: 0; border-radius: 8px; background: #226d54; color: white; padding: 11px 16px; cursor: pointer; margin-top: 12px; }
-  button:disabled { opacity: .55; cursor: default; }
-  .muted { color: #52635a; }
-  #answer { white-space: pre-wrap; font-size: 1.08rem; }
-  .source { padding: 14px 0; border-top: 1px solid #e2e8e2; }
-  .source strong { color: #226d54; }
+  button { border: 1px solid #000; background: #000; color: #fff; padding: 8px 14px; cursor: pointer; margin-top: 12px; }
+  button:disabled { background: #fff; color: #888; border-color: #888; cursor: default; }
+  .muted { color: #555; }
+  #answer { white-space: pre-wrap; }
+  .source { padding: 12px 0; border-top: 1px solid #ccc; }
   #status { min-height: 1.5em; }
-  .quiz-question { border-top: 1px solid #e2e8e2; padding: 18px 0; }
+  .quiz-question { border-top: 1px solid #ccc; padding: 16px 0; }
   .quiz-question label { font-weight: 400; margin: 6px 0; }
   .scorebar { margin: 10px 0; }
-  .scorebar span { display: block; height: 8px; border-radius: 8px; background: #64b596; }
+  .scorebar span { display: block; height: 8px; background: #000; }
 </style>
 <header><p class="eyebrow">NoteWorthy / Sprint 1 prototype</p><h1>Ask your notes.</h1><p class="muted">Upload one typed PDF, ask a question, and inspect the passages behind the answer.</p></header>
 <main class="grid">
