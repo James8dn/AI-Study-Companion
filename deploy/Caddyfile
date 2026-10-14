@@ -1,0 +1,6 @@
+# STAGING_HOST comes from .env, for example 203-0-113-10.sslip.io (the Reserved IP with dashes).
+# Caddy gets the HTTPS certificate automatically.
+{$STAGING_HOST} {
+	encode gzip
+	reverse_proxy app:8000
+}
