@@ -90,9 +90,11 @@ class Handler(BaseHTTPRequestHandler):
                 raise ValueError("Send a JSON object.")
             if path == "/api/upload":
                 name = self._string(payload, "name", 180)
-                data = self._string(payload, "data", MAX_REQUEST_BYTES)
                 if not name.lower().endswith(".pdf"):
                     raise ValueError("Choose a PDF file.")
+                if payload.get("data") == "":
+                    raise ValueError("The file is empty. Choose a PDF that has content.")
+                data = self._string(payload, "data", MAX_REQUEST_BYTES)
                 pdf = base64.b64decode(data, validate=True)
                 if len(pdf) > MAX_PDF_BYTES:
                     self._json(413, {"error": "PDF must be at most 12 MB."})
