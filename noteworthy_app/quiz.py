@@ -73,7 +73,7 @@ def generate_quiz(passages: list[Passage]) -> list[dict]:
         options.insert(answer_index, answer)
         questions.append(
             {
-                "question": f"Which term completes this PDF statement: “{sentence.replace(answer, '_____', 1)}”",
+                "question": sentence.replace(answer, "_____", 1),
                 "options": options,
                 "answer_index": answer_index,
                 "source_id": passage.id,

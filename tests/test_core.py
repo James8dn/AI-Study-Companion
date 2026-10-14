@@ -35,6 +35,8 @@ class StudyTests(unittest.TestCase):
             self.assertEqual(len(item["options"]), 4)
             self.assertIn(item["options"][item["answer_index"]], sources[item["source_id"]].text)
             self.assertEqual(item["page"], sources[item["source_id"]].page)
+            self.assertIn("_____", item["question"])
+            self.assertFalse(item["question"].startswith("Which term"))
 
     def test_quiz_rejects_insufficient_material(self):
         with self.assertRaisesRegex(ValueError, "at least five"):
