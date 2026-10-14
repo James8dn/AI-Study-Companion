@@ -132,6 +132,11 @@ class ServerTests(unittest.TestCase):
                 status, _ = self.post("/api/upload", payload)
                 self.assertEqual(status, 400)
 
+    def test_empty_upload_has_clear_message(self):
+        status, payload = self.post("/api/upload", {"name": "empty.pdf", "data": ""})
+        self.assertEqual(status, 400)
+        self.assertEqual(payload["error"], "The file is empty. Choose a PDF that has content.")
+
     def test_empty_or_non_string_question_is_rejected(self):
         document_id = self.upload()
         for question in [" ", None, 10]:
