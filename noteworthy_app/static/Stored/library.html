@@ -42,7 +42,7 @@
     <button id="uploadButton">Upload
       <input type="file" id="file-input">
     </button>
-
+    <p id="status"></p>
   </section>
 
 <table id="listing">
@@ -70,7 +70,6 @@
   let currentQuiz = [];
   const $ = id => document.getElementById(id);
 
-
   const dropZone = document.getElementById('uploadButton');
   const fileInput = document.getElementById('file-input');
 
@@ -89,14 +88,11 @@
     if (!response.ok) throw new Error(data.error || 'Request failed');
     return data;
   }
-  function renderDocuments(documents) {
-    const list = $('documents'); list.replaceChildren();
-    for (const uploadedDocument of documents) {
-      const item = document.createElement('p');
-      item.textContent = `${uploadedDocument.name} · ${uploadedDocument.passages} passages`;
-      list.append(item);
-    }
+
+  function fileStatus(message) {
+    $('status').textContent = message;
   }
+
   function renderToTable(documents) {
     const tbody = document.querySelector('#listing tbody');
     tbody.replaceChildren();
@@ -114,9 +110,12 @@
   }
 
   async function uploadFile(file) {
-    if (!file) { 
+    if (!file) {
+      fileStatus("Error: File must be a PDF.")
       return; 
     }
+    $('uploadButton').disabled = true; 
+    fileStatus("Processing...")
     try {
       const data = await new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -125,10 +124,14 @@
       });
       selectedDocument = await api('/api/upload', {name: file.name, data});
 
-      //renderDocuments((await fetch('/api/documents').then(r => r.json())).documents);
       renderToTable((await fetch('/api/documents').then(r => r.json())).documents);
-    } catch (error) { $('status').textContent = error.message; }
-    finally { $('upload').disabled = false; }
+    } catch (error) { 
+      fileStatus(error.message); 
+    }
+    finally { 
+      fileStatus("")
+      $('uploadButton').disabled = false; 
+    }
 
   };
   
